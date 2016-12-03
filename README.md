@@ -1,4 +1,4 @@
-# Advent of Code 2016
+# Advent of Code 2016 :christmas_tree:
 
 # About :snowman:
 [Advent of Code](http://adventofcode.com/2016) is here!
