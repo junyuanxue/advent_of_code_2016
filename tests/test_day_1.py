@@ -25,4 +25,4 @@ class BlockCalculatorTestCase(unittest.TestCase):
     def test_calculate_distance_from_first_revisted_block(self):
         test_input = 'R8, R4, R4, R8'
         self.block_calculator.run(test_input)
-        self.assertEqual(self.distance, 4)
+        self.assertEqual(self.block_calculator.distance, 4)
