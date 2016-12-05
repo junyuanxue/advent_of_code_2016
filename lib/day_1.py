@@ -28,6 +28,4 @@ class BlockCalculator(object):
                 elif facing == 3:
                     y -= distance
                 facing = (facing - 1)%4
-        print(x)
-        print(y)
         return abs(x) + abs(y)
