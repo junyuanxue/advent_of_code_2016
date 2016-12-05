@@ -13,7 +13,7 @@ class BlockCalculator(object):
                     x += distance
                     facing = 'E'
                 elif facing == 'S':
-                    x += distance
+                    x -= distance
                     facing = 'W'
                 elif facing == 'E':
                     y -= distance
@@ -26,7 +26,7 @@ class BlockCalculator(object):
                     x -= distance
                     facing = 'W'
                 elif facing == 'S':
-                    x -= distance
+                    x += distance
                     facing = 'E'
                 elif facing == 'E':
                     y += distance
