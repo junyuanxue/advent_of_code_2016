@@ -8,7 +8,7 @@ class BlockCalculator(object):
         x = 0
         y = 0
         facing = 0 # north: 0, east: 1: south: 2, west: 3
-        spots_tracker = []
+        spots_tracker = [[x, y]]
         first_repeated_spot_found = False
         for instruction in instructions:
             direction = instruction[0]
@@ -25,9 +25,12 @@ class BlockCalculator(object):
                         y += 1
                     current_spot = [x, y]
                     if current_spot in spots_tracker and not first_repeated_spot_found:
+                        print(x)
+                        print(y)
                         self.distance = self._get_distance(x, y)
+                        first_repeated_spot_found = True
                     spots_tracker.append(current_spot)
-                facing = (facing + 1)%4
+                facing = (facing + 1) % 4
             else:
                 for i in range(distance):
                     if facing == 0:
@@ -40,9 +43,12 @@ class BlockCalculator(object):
                         y -= 1
                     current_spot = [x, y]
                     if current_spot in spots_tracker and not first_repeated_spot_found:
+                        print(x)
+                        print(y)
                         self.distance = self._get_distance(x, y)
+                        first_repeated_spot_found = True
                     spots_tracker.append(current_spot)
-                facing = (facing - 1)%4
+                facing = (facing - 1) % 4
 
         self.totalBlocksAway = self._get_distance(x, y)
 

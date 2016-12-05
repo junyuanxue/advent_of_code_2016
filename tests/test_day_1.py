@@ -26,3 +26,6 @@ class BlockCalculatorTestCase(unittest.TestCase):
         test_input = 'R8, R4, R4, R8'
         self.block_calculator.run(test_input)
         self.assertEqual(self.block_calculator.distance, 4)
+
+        self.block_calculator.run(self.puzzle_input)
+        self.assertEqual(self.block_calculator.distance, 136)
