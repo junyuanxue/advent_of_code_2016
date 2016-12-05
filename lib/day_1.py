@@ -7,8 +7,14 @@ class BlockCalculator(object):
         for index, instruction in enumerate(instructions):
             direction = instruction[0]
             distance = int(instruction[1])
-            if direction == 'R':
-                x += distance
+            if index % 2 == 0:
+                if direction == 'R':
+                    x += distance
+                else:
+                    x -= distance
             else:
-                x -= distance
-        return input
+                if direction == 'L':
+                    y += distance
+                else:
+                    y -= distance
+        return abs(x + y)
