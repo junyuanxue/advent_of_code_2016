@@ -8,47 +8,31 @@ class BlockCalculator(object):
         x = 0
         y = 0
         facing = 0 # north: 0, east: 1: south: 2, west: 3
+        step_action = {0: 1, 1: -1, 2: -1, 3: 1}
+        direction_action = {'R': 1, 'L': -1}
         spots_tracker = [[x, y]]
         first_repeated_spot_found = False
+
         for instruction in instructions:
-            direction = instruction[0]
+            direction_text = instruction[0]
             distance = int(instruction[1:])
-            if direction == 'R':
-                for i in range(distance):
-                    if facing == 0:
-                        x += 1
-                    elif facing == 2:
-                        x -= 1
-                    elif facing == 1:
-                        y -= 1
-                    elif facing == 3:
-                        y += 1
-                    current_spot = [x, y]
-                    if current_spot in spots_tracker and not first_repeated_spot_found:
-                        print(x)
-                        print(y)
-                        self.distance = self._get_distance(x, y)
-                        first_repeated_spot_found = True
-                    spots_tracker.append(current_spot)
-                facing = (facing + 1) % 4
-            else:
-                for i in range(distance):
-                    if facing == 0:
-                        x -= 1
-                    elif facing == 2:
-                        x += 1
-                    elif facing == 1:
-                        y += 1
-                    elif facing == 3:
-                        y -= 1
-                    current_spot = [x, y]
-                    if current_spot in spots_tracker and not first_repeated_spot_found:
-                        print(x)
-                        print(y)
-                        self.distance = self._get_distance(x, y)
-                        first_repeated_spot_found = True
-                    spots_tracker.append(current_spot)
-                facing = (facing - 1) % 4
+
+            direction = direction_action[direction_text]
+            step = step_action[facing]
+
+            for i in range(distance):
+                if facing % 2 == 0:
+                    x += step * direction
+                else:
+                    y += step * direction
+
+                current_spot = [x, y]
+                if current_spot in spots_tracker and not first_repeated_spot_found:
+                    self.distance = self._get_distance(x, y)
+                    first_repeated_spot_found = True
+                spots_tracker.append(current_spot)
+
+            facing = (facing + (1 * direction)) % 4
 
         self.totalBlocksAway = self._get_distance(x, y)
 
