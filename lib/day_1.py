@@ -4,36 +4,30 @@ class BlockCalculator(object):
         instructions = input.split(', ')
         x = 0
         y = 0
-        facing = 'N' # north: 0, east: 1: south: 2, west: 3
+        facing = 0 # north: 0, east: 1: south: 2, west: 3
         for index, instruction in enumerate(instructions):
             direction = instruction[0]
-            distance = int(instruction[1])
+            distance = int(instruction[1:])
             if direction == 'R':
-                if facing == 'N':
+                if facing == 0:
                     x += distance
-                    facing = 'E'
-                elif facing == 'S':
+                elif facing == 2:
                     x -= distance
-                    facing = 'W'
-                elif facing == 'E':
+                elif facing == 1:
                     y -= distance
-                    facing = 'S'
-                elif facing == 'W':
+                elif facing == 3:
                     y += distance
-                    facing = 'N'
+                facing = (facing + 1)%4
             else:
-                if facing == 'N':
+                if facing == 0:
                     x -= distance
-                    facing = 'W'
-                elif facing == 'S':
+                elif facing == 2:
                     x += distance
-                    facing = 'E'
-                elif facing == 'E':
+                elif facing == 1:
                     y += distance
-                    facing = 'N'
-                elif facing == 'W':
+                elif facing == 3:
                     y -= distance
-                    facing = 'S'
+                facing = (facing - 1)%4
         print(x)
         print(y)
         return abs(x) + abs(y)
