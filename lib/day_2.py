@@ -1,3 +1,3 @@
 class Decoder(object):
-    def run(self, input):
+    def run(self, instructions):
         return 'hello'

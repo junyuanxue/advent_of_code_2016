@@ -8,10 +8,10 @@ class DecoderTestCase(unittest.TestCase):
         self.puzzle_input = bathroom_code_instructions
 
     def test_decodes_instructions(self):
-        test_input = [
+        instructions = [
             'ULL',
             'RRDDD',
             'LURDL',
             'UUUUD'
         ]
-        self.assertEqual(self.decoder.run(test_input), '1985')
+        self.assertEqual(self.decoder.run(instructions), '1985')
