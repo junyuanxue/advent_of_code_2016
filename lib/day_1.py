@@ -3,8 +3,8 @@ class BlockCalculator(object):
         self.totalBlocksAway = 0
         self.distance = 0
 
-    def run(self, input):
-        instructions = input.split(', ')
+    def run(self, instructions):
+        instructions = instructions.split(', ')
         x = 0
         y = 0
         facing = 0 # north: 0, east: 1: south: 2, west: 3
