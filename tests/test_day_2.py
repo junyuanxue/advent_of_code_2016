@@ -15,3 +15,4 @@ class DecoderTestCase(unittest.TestCase):
             'UUUUD'
         ]
         self.assertEqual(self.decoder.run(instructions), '1985')
+        self.assertEqual(self.decoder.run(self.puzzle_input), '47978')
