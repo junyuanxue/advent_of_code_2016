@@ -2,7 +2,7 @@ import unittest
 from lib.day_2 import Decoder
 from tests.input.input_day_2 import bathroom_code_instructions
 
-class Decoder(unittest.TestCase):
+class DecoderTestCase(unittest.TestCase):
     def setUp(self):
         self.decoder = Decoder()
         self.puzzle_input = bathroom_code_instructions
