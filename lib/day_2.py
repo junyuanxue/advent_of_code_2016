@@ -30,7 +30,38 @@ class Decoder(object):
         return code
 
     def unlock_funky_keypad(self, instructions):
-        return instructions
+        x = -2
+        y = 0 # 5 -> (-2, 0), central point 7 (0, 0), absolute value can't go over 2
+        code = ''
+        coordinates_map = {
+            1: [0, 2],
+            2: [-1, 1],
+            3: [0, 1],
+            4: [1, 1],
+            5: [-2, 0],
+            6: [-1, 0],
+            7: [0, 0],
+            8: [1, 0],
+            9: [2, 0],
+            'A': [-1, -1],
+            'B': [0, -1],
+            'C': [1, -1],
+            'D': [0, -2]
+        }
+        for line in instructions:
+            steps = list(line)
+            for step in steps:
+                if step == 'U' and (y < x + 2 or y < 2 - x):
+                    y += 1
+                elif step == 'D' and (y > x - 2 or y > x * -1 - 2):
+                    y -= 1
+                elif step == 'R' and (x < 2 - y or x < y + 2):
+                    x += 1
+                elif step == 'L' and (x > y - 2 or x > -2 - y):
+                    x -= 1
+            number = self._get_number([x, y], coordinates_map)
+            code += str(number)
+        return code
 
     def _get_number(self, dot, coordinates_map):
         for number, coordinates in coordinates_map.items():
