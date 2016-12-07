@@ -29,6 +29,9 @@ class Decoder(object):
             code += str(number)
         return code
 
+    def unlock_funky_keypad(self, instructions):
+        return instructions
+
     def _get_number(self, dot, coordinates_map):
         for number, coordinates in coordinates_map.items():
             if coordinates == dot: return number
