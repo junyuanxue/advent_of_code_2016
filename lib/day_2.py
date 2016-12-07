@@ -17,15 +17,14 @@ class Decoder(object):
         for line in instructions:
             steps = list(line)
             for step in steps:
-                print(step)
-                if step == 'U':
-                    if y < 1: y += 1
-                elif step == 'D':
-                    if y > -1: y -= 1
-                elif step == 'R':
-                    if x < 1: x += 1
-                elif step == 'L':
-                    if x > -1: x -= 1
+                if step == 'U' and y < 1:
+                    y += 1
+                elif step == 'D' and y > -1:
+                    y -= 1
+                elif step == 'R' and x < 1:
+                    x += 1
+                elif step == 'L' and x > -1:
+                    x -= 1
             number = self._get_number([x, y], coordinates_map)
             code += str(number)
         return code
