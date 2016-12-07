@@ -19,3 +19,4 @@ class DecoderTestCase(unittest.TestCase):
 
     def test_unlocks_funky_keypad(self):
         self.assertEqual(self.decoder.unlock_funky_keypad(self.instructions), '5DB3')
+        self.assertEqual(self.decoder.unlock_funky_keypad(self.puzzle_input), '659AD')
