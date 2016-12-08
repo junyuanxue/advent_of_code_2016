@@ -10,4 +10,8 @@ class TriangleFinderTestCase(unittest.TestCase):
     def test_finds_number_of_triangles(self):
         side_lengths = '5 10 25'
         self.triangle_finder.count(side_lengths)
-        self.assertEqual(self.triangle_finder.tally, 1)
+        self.assertEqual(self.triangle_finder.tally, 0)
+
+        three_sets = '458 70 645\n3 4 5\n7 10 14'
+        self.triangle_finder.count(three_sets)
+        self.assertEqual(self.triangle_finder.tally, 2)
