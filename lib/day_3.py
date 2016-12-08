@@ -1,10 +1,13 @@
 class TriangleFinder(object):
-    def __init__(self):
-        self.tally = 0
-
     def count(self, side_lengths):
         sets = side_lengths.split('\n')
+        tally = 0
         for set in sets:
             sides = list(map(int, set.strip().split()))
-            if len(sides) == 3 and sides[0] + sides[1] > sides[2] and sides[1] + sides[2] > sides[0] and sides[0] + sides[1] > sides[2]:
-               self.tally += 1
+            if len(sides) == 3:
+                x = sides[0]
+                y = sides[1]
+                z = sides[2]
+                if x + y > z and y + z > x and x + z > y:
+                    tally += 1
+        return tally
