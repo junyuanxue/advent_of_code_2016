@@ -15,3 +15,6 @@ class TriangleFinderTestCase(unittest.TestCase):
         three_sets = '458 70 645\n3 4 5\n7 10 14'
         self.triangle_finder.count(three_sets)
         self.assertEqual(self.triangle_finder.tally, 2)
+
+        self.triangle_finder.count(self.sets)
+        print(self.triangle_finder.tally)
