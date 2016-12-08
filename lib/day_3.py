@@ -12,7 +12,10 @@ class TriangleFinder(object):
         lines = self._split_lines(side_lengths)
         horizonal_list = list(map(self._get_sides, lines))
         vertial_list = list(map(list, zip(*horizonal_list)))
+        print(horizonal_list)
+        print(vertial_list)
         sets = self._get_sets_of_side_lengths(vertial_list)
+
         tally = 0
         for set in sets:
             sides = list(map(int, set))
