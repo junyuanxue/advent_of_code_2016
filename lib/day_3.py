@@ -12,11 +12,7 @@ class TriangleFinder(object):
         lines = self._split_lines(side_lengths)
         horizonal_list = list(map(self._get_sides, lines))
         vertial_list = list(map(list, zip(*horizonal_list)))
-        sets = []
-        for long_list in vertial_list:
-            short_lists = list(self._slice(long_list, 3))
-            for short_list in short_lists:
-                sets.append(short_list)
+        sets = self._get_sets_of_side_lengths(vertial_list)
         print(sets)
 
 
@@ -36,3 +32,11 @@ class TriangleFinder(object):
     def _slice(self, long_list, n):
         for i in range(0, len(long_list), n):
             yield long_list[i:i + n]
+
+    def _get_sets_of_side_lengths(self, vertial_list):
+        sets = []
+        for long_list in vertial_list:
+            short_lists = list(self._slice(long_list, 3))
+            for short_list in short_lists:
+                sets.append(short_list)
+        return sets
