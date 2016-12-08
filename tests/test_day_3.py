@@ -18,3 +18,9 @@ class TriangleFinderTestCase(unittest.TestCase):
 
         puzzle_tally = self.triangle_finder.count(self.puzzle_sets)
         self.assertEqual(puzzle_tally, 983)
+
+    def test_targets_triangles_by_column(self):
+        side_lengths = '101 301 501\n102 302 502\n103 303 503\n201 401 601\n202 402 602\n203 403 603'
+        tally_1 = self.triangle_finder.count_by_column(side_lengths)
+        self.assertEqual(tally_1, 6)
+        
