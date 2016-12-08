@@ -4,6 +4,8 @@ from lib.day_3 import TriangleFinder
 class TriangleFinderTestCase(unittest.TestCase):
     def setUp(self):
         self.triangle_finder = TriangleFinder()
+        with open('tests/input/input_day_3.txt', 'r') as input_file:
+            self.sets = input_file.read()
 
     def test_finds_number_of_triangles(self):
         side_lengths = '5 10 25'
