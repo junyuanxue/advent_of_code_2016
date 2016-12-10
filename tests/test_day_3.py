@@ -25,3 +25,4 @@ class TriangleFinderTestCase(unittest.TestCase):
         self.assertEqual(tally_1, 6)
 
         puzzle_tally = self.triangle_finder.count_by_column(self.puzzle_sets)
+        self.assertEqual(puzzle_tally, 1836)

@@ -13,14 +13,12 @@ class TriangleFinder(object):
         horizonal_list = list(map(self._get_sides, lines))
         columns = self._get_columns(horizonal_list)
         sets = self._get_sets_of_side_lengths(columns)
-
         tally = 0
         for set in sets:
             sides = list(map(int, set))
             if self._is_triangle(sides):
                 tally += 1
         return tally
-
 
     def _split_lines(self, side_lengths):
         return side_lengths.split('\n')
