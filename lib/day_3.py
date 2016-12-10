@@ -11,9 +11,12 @@ class TriangleFinder(object):
     def count_by_column(self, side_lengths):
         lines = self._split_lines(side_lengths)
         horizonal_list = list(map(self._get_sides, lines))
-        vertial_list = list(map(list, zip(*horizonal_list)))
-        print(horizonal_list)
-        print(vertial_list)
+        vertical_list = [[], [], []]
+        for line in horizonal_list:
+            for index, length in enumerate(line):
+                vertical_list[index].append(line[index])
+
+        print(vertical_list)
         sets = self._get_sets_of_side_lengths(vertial_list)
 
         tally = 0
