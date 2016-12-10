@@ -19,10 +19,14 @@ class RoomDecoder(object):
 
     def _get_most_common_letters(self, letters, number):
         letters = list(letters)
+        frequencies = self._map_letter_frequencies(letters)
+        print(frequencies)
+
+    def _map_letter_frequencies(self, letters_list):
         frequencies = {}
-        for letter in letters:
+        for letter in letters_list:
             frequency = 1
             if letter in frequencies:
                 frequency = frequencies[letter] + 1
             frequencies[letter] = frequency
-        print(frequencies)
+        return frequencies
