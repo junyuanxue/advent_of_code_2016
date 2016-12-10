@@ -1,4 +1,5 @@
 import re
+import operator
 
 class RoomDecoder(object):
     def __init__(self):
@@ -14,3 +15,14 @@ class RoomDecoder(object):
             print(checksum)
             print(sector_id)
             print(letters)
+            most_common_letters = self._get_most_common_letters(letters, 5)
+
+    def _get_most_common_letters(self, letters, number):
+        letters = list(letters)
+        frequencies = {}
+        for letter in letters:
+            frequency = 1
+            if letter in frequencies:
+                frequency = frequencies[letter] + 1
+            frequencies[letter] = frequency
+        print(frequencies)
