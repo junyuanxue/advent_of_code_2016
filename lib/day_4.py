@@ -21,12 +21,13 @@ class RoomDecoder(object):
                 self.sum_of_sector_ids += sector_id
 
     def decrypt_name(self, encrypted_name, sector_id):
-        output = []
-        letters = list(encrypted_name)
-        print(letters)
-        for letter in letters:
-            letter
-        return 'hello'
+        output = ''
+        for letter in encrypted_name:
+            output += '' if letter == '-' else self._decode(letter)
+        return output
+
+    def _decode(self, letter):
+        return 'meh'
 
     def _is_real_room(self, checksum, occurrences, largest_values):
         checksum_list = list(checksum)
