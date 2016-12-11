@@ -17,5 +17,5 @@ class RoomDecoderTestCase(unittest.TestCase):
         self.assertEqual(self.room_decoder.sum_of_sector_ids, 409147)
 
     def test_decrypts_room_names(self):
-        name = self.room_decoder.decrypt_name('qzmt-zixmtkozy-ivhz', '343')
+        name = self.room_decoder.decrypt_name('qzmt-zixmtkozy-ivhz', 343)
         self.assertEqual(name, 'very encrypted name')
