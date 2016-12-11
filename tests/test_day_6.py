@@ -9,5 +9,5 @@ class MessengerTestCase(unittest.TestCase):
             self.puzzle_signal = input_file.read()
 
     def test_reads_message_from_signal(self):
-        message = self.messenger.read(signal)
+        message = self.messenger.read(self.signal)
         self.assertEqual(message, 'easter')
