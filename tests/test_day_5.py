@@ -9,5 +9,5 @@ class PasswordFinderTestCase(unittest.TestCase):
         password = self.password_finder.run('abc')
         self.assertEqual(password, '18f47a30')
 
-        door_id = 'cxdnnyjw'
-        puzzle_password = self.password_finder.run(door_id)
+        # door_id = 'cxdnnyjw'
+        # puzzle_password = self.password_finder.run(door_id)
