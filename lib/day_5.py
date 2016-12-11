@@ -20,8 +20,9 @@ class PasswordFinder(object):
             data = door_id + str(counter)
             code = hashlib.md5(data.encode('utf-8')).hexdigest()
             if code[0:5] == '00000' and re.search('[0-7]', code[5]):
-                index = code[5]
-                del password[index]
-                password.insert(index, code[6])
+                index = int(code[5])
+                if password[index] == '?':
+                    del password[index]
+                    password.insert(index, code[6])
             counter += 1
         return ''.join(password)
