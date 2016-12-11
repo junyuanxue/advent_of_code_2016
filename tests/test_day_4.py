@@ -19,3 +19,8 @@ class RoomDecoderTestCase(unittest.TestCase):
     def test_decrypts_room_names(self):
         name = self.room_decoder.decrypt_name('qzmt-zixmtkozy-ivhz', 343)
         self.assertEqual(name, 'very encrypted name')
+
+    def test_finds_north_pole_storage_from_crazy_input(self):
+        self.room_decoder.run(self.puzzle_data)
+        correct_room = 'kloqemlib-lygbzq-pqloxdb-991[lbqod]'
+        self.assertEqual(self.room_decoder.north_pole_storage, correct_room)

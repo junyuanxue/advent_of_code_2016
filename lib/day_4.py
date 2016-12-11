@@ -3,6 +3,7 @@ from collections import Counter
 class RoomDecoder(object):
     def __init__(self):
         self.sum_of_sector_ids = 0
+        self.north_pole_storage = ''
 
     def run(self, data):
         rooms = data.strip().split('\n')
@@ -17,14 +18,19 @@ class RoomDecoder(object):
             occurrences = dict(Counter(list(letters)))
             largest_values = sorted(occurrences.values(), reverse=True)[:5]
             if self._is_real_room(checksum, occurrences, largest_values) == True:
-                # self.decrypt_name(encrypted_name, sector_id)
                 self.sum_of_sector_ids += sector_id
+                decrypted_name = self.decrypt_name(encrypted_name, sector_id)
+                self._find_north_pole_room(decrypted_name, room)
 
     def decrypt_name(self, encrypted_name, sector_id):
         output = ''
         for letter in encrypted_name:
             output += ' ' if letter == '-' else self._decode(letter, sector_id)
         return output
+
+    def _find_north_pole_room(self, name, room):
+        if 'northpole object' in name:
+            self.north_pole_storage = room
 
     def _decode(self, letter, number):
         ordinal = ord(letter)
