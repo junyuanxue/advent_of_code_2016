@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 
 class RoomDecoder(object):
     def __init__(self):
@@ -12,25 +13,20 @@ class RoomDecoder(object):
             sector_id = first_part.split('-').pop()
             letters = re.sub('[^a-zA-Z]', '', first_part)
 
-            frequencies = self._map_letter_frequencies(list(letters))
-            sorted_frequencies = sorted(frequencies.values(), reverse=True)
-            largest_values = self._get_largest_values(sorted_frequencies, 5)
+            frequencies = dict(Counter(list(letters)))
+            largest_values = sorted(frequencies.values(), reverse=True)[:5]
+            print(frequencies)
+            print(largest_values)
+            # largest_values = self._get_largest_values(sorted_frequencies, 5)
             if self._is_real_room(checksum, frequencies, largest_values):
                 self.sum_of_sector_ids += int(sector_id)
 
-    def _map_letter_frequencies(self, letters_list):
-        frequencies = {}
-        for letter in letters_list:
-            frequency = frequencies[letter] + 1 if letter in frequencies else 1
-            frequencies[letter] = frequency
-        return frequencies
-
-    def _get_largest_values(self, numbers, length):
-        values = []
-        for number in numbers:
-            if number not in values and len(values) <= 5:
-                values.append(number)
-        return values
+    # def _get_largest_values(self, numbers, length):
+    #     values = []
+    #     for number in numbers:
+    #         if number not in values and len(values) <= 5:
+    #             values.append(number)
+    #     return values
 
     def _is_real_room(self, checksum, frequencies, largest_values):
         for letter in checksum:
