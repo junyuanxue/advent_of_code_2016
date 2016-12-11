@@ -1,4 +1,3 @@
-import re
 from collections import Counter
 
 class RoomDecoder(object):
@@ -8,16 +7,26 @@ class RoomDecoder(object):
     def run(self, data):
         rooms = data.strip().split('\n')
         for room in rooms:
-            checksum = room.split('[')[1][:-1]
             first_part = room.split('[')[0]
-            sector_id = first_part.split('-').pop()
-            letters = re.sub('[^a-zA-Z]', '', first_part)
+
+            checksum = room.split('[')[1][:-1]
+            sector_id = int(first_part.split('-').pop())
+            encrypted_name = first_part[:-4]
+            letters = encrypted_name.replace('-', '')
 
             occurrences = dict(Counter(list(letters)))
             largest_values = sorted(occurrences.values(), reverse=True)[:5]
             if self._is_real_room(checksum, occurrences, largest_values) == True:
-                self.sum_of_sector_ids += int(sector_id)
+                # self.decrypt_name(encrypted_name, sector_id)
+                self.sum_of_sector_ids += sector_id
 
+    def decrypt_name(self, encrypted_name, sector_id):
+        output = []
+        letters = list(encrypted_name)
+        print(letters)
+        for letter in letters:
+            letter
+        return 'hello'
 
     def _is_real_room(self, checksum, occurrences, largest_values):
         checksum_list = list(checksum)
