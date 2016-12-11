@@ -13,12 +13,10 @@ class RoomDecoder(object):
             sector_id = first_part.split('-').pop()
             letters = re.sub('[^a-zA-Z]', '', first_part)
 
-            frequencies = dict(Counter(list(letters)))
-            largest_values = sorted(frequencies.values(), reverse=True)[:5]
-            print(frequencies)
-            print(largest_values)
-            # largest_values = self._get_largest_values(sorted_frequencies, 5)
-            if self._is_real_room(checksum, frequencies, largest_values):
+            occurrences = dict(Counter(list(letters)))
+            largest_values = sorted(occurrences.values(), reverse=True)[:5]
+            # largest_values = self._get_largest_values(sorted_occurrences, 5)
+            if self._is_real_room(checksum, occurrences, largest_values) == True:
                 self.sum_of_sector_ids += int(sector_id)
 
     # def _get_largest_values(self, numbers, length):
@@ -28,8 +26,15 @@ class RoomDecoder(object):
     #             values.append(number)
     #     return values
 
-    def _is_real_room(self, checksum, frequencies, largest_values):
-        for letter in checksum:
-            if letter not in frequencies or frequencies[letter] not in largest_values:
+    def _is_real_room(self, checksum, occurrences, largest_values):
+        checksum_list = list(checksum)
+        for index, letter in enumerate(checksum_list):
+            if letter not in occurrences or occurrences[letter] not in largest_values:
                 return False
+            elif occurrences[letter] in largest_values and index < 4:
+                next_letter = checksum_list[index + 1]
+                if occurrences[letter] < occurrences[next_letter]:
+                    return False
+                elif occurrences[letter] == occurrences[next_letter] and letter > next_letter:
+                    return False
         return True
