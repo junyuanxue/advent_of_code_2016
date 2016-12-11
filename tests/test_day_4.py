@@ -15,4 +15,4 @@ class RoomDecoderTestCase(unittest.TestCase):
     def test_sums_sector_ids_of_real_rooms_after_crazy_input(self):
         self.room_decoder.sum_sector_ids(self.puzzle_data)
         print(self.room_decoder.sum_of_sector_ids)
-        # self.assertEqual(self.room_decoder.sum_of_sector_ids, 0)
+        self.assertEqual(self.room_decoder.sum_of_sector_ids, 409147)
