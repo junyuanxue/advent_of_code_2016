@@ -28,12 +28,16 @@ class RoomDecoder(object):
 
     def _is_real_room(self, checksum, occurrences, largest_values):
         checksum_list = list(checksum)
+        print(occurrences)
+        print(checksum)
         for index, letter in enumerate(checksum_list):
             if letter not in occurrences or occurrences[letter] not in largest_values:
                 return False
             elif occurrences[letter] in largest_values and index < 4:
                 next_letter = checksum_list[index + 1]
-                if occurrences[letter] < occurrences[next_letter]:
+                if next_letter not in occurrences:
+                    return False
+                elif occurrences[letter] < occurrences[next_letter]:
                     return False
                 elif occurrences[letter] == occurrences[next_letter] and letter > next_letter:
                     return False
