@@ -5,7 +5,7 @@ class RoomDecoder(object):
         self.sum_of_sector_ids = 0
 
     def sum_sector_ids(self, data):
-        rooms = data.split('\n')
+        rooms = data.strip().split('\n')
         for room in rooms:
             checksum = room.split('[')[1][:-1]
             first_part = room.split('[')[0]
