@@ -5,7 +5,7 @@ class RoomDecoder(object):
     def __init__(self):
         self.sum_of_sector_ids = 0
 
-    def sum_sector_ids(self, data):
+    def run(self, data):
         rooms = data.strip().split('\n')
         for room in rooms:
             checksum = room.split('[')[1][:-1]
@@ -17,6 +17,7 @@ class RoomDecoder(object):
             largest_values = sorted(occurrences.values(), reverse=True)[:5]
             if self._is_real_room(checksum, occurrences, largest_values) == True:
                 self.sum_of_sector_ids += int(sector_id)
+
 
     def _is_real_room(self, checksum, occurrences, largest_values):
         checksum_list = list(checksum)
