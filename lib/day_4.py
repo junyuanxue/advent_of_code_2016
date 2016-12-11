@@ -15,21 +15,11 @@ class RoomDecoder(object):
 
             occurrences = dict(Counter(list(letters)))
             largest_values = sorted(occurrences.values(), reverse=True)[:5]
-            # largest_values = self._get_largest_values(sorted_occurrences, 5)
             if self._is_real_room(checksum, occurrences, largest_values) == True:
                 self.sum_of_sector_ids += int(sector_id)
 
-    # def _get_largest_values(self, numbers, length):
-    #     values = []
-    #     for number in numbers:
-    #         if number not in values and len(values) <= 5:
-    #             values.append(number)
-    #     return values
-
     def _is_real_room(self, checksum, occurrences, largest_values):
         checksum_list = list(checksum)
-        print(occurrences)
-        print(checksum)
         for index, letter in enumerate(checksum_list):
             if letter not in occurrences or occurrences[letter] not in largest_values:
                 return False
