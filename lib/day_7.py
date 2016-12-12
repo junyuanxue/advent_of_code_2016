@@ -11,15 +11,8 @@ class IPChecker(object):
 
     def _supports_tls(self, ip):
 
-        normal_strings = []
+        normal_strings = re.findall(r'\]\w+$|^\w+\[|\]\w+\[', ip)
         hypernet_strings = re.findall(r'\[\w+\]', ip)
-        # while '[' in ip or ']' in ip:
-        #     normal_strings.append(ip.split('[')[0])
-        #     ip = ip.split('[')[1]
-        #     hypernet_strings.append(ip.split(']')[0])
-        #     ip = ip.split(']')[1]
-        print(normal_strings)
-        print(hypernet_strings)
         return self._has_abba(normal_strings) and not self._has_abba(hypernet_strings)
 
     def _has_abba(self, strings):
