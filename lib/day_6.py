@@ -1,14 +1,14 @@
 from collections import Counter
 
 class Messenger(object):
-    def read(self, signal):
+    def read(self, signal, mode):
         lines = signal.strip().split('\n')
         columns = self._get_columns(lines)
         message = ''
+        index = 0 if mode == 'most' else -1
         for column in columns:
             occurrences = dict(Counter(column))
-            # letter = sorted(occurrences, key=occurrences.get, reverse=True)[0]
-            letter = sorted(occurrences, key=occurrences.get, reverse=True)[-1]
+            letter = sorted(occurrences, key=occurrences.get, reverse=True)[index]
             message += letter
         return message
 
