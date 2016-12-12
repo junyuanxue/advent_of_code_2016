@@ -12,7 +12,8 @@ class Messenger(object):
         return message
 
     def _get_columns(self, lines):
-        columns = [[], [], [], [], [], []]
+        length = len(lines[0])
+        columns = [[] for _ in range(length)]
         for line in lines:
             index = 0
             while index < len(line):

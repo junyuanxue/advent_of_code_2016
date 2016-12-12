@@ -11,3 +11,6 @@ class MessengerTestCase(unittest.TestCase):
     def test_reads_message_from_signal(self):
         message = self.messenger.read(self.signal)
         self.assertEqual(message, 'easter')
+
+        puzzle_message = self.messenger.read(self.puzzle_signal)
+        self.assertEqual(puzzle_message, 'ikerpcty')
