@@ -7,7 +7,8 @@ class Messenger(object):
         message = ''
         for column in columns:
             occurrences = dict(Counter(column))
-            letter = sorted(occurrences, key=occurrences.get, reverse=True)[0]
+            # letter = sorted(occurrences, key=occurrences.get, reverse=True)[0]
+            letter = sorted(occurrences, key=occurrences.get, reverse=True)[-1]
             message += letter
         return message
 
