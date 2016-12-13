@@ -6,8 +6,7 @@ class IPChecker(object):
         tally = 0
         for ip in ips:
             criteria = self._supports_tls(ip) if tech == 'tls' else self._supports_ssl(ip)
-            if criteria:
-                tally += 1
+            if criteria: tally += 1
         return tally
 
     def _get_supernet_strings(self, ip):
@@ -27,8 +26,7 @@ class IPChecker(object):
             while i <= len(string) - 4:
                 if string[i] != string[i + 1] and string[i + 1] == string[i + 2] and string[i + 2] != string[i + 3] and string[i] == string[i + 3]:
                     return True
-                else:
-                    i += 1
+                else: i += 1
         return False
 
     def _supports_ssl(self, ip):
@@ -42,15 +40,12 @@ class IPChecker(object):
             while i <= len(string) - 3:
                 if string[i] != string[i + 1] and string[i] == string[i + 2]:
                     bab = string[i + 1] + string[i] + string[i + 1]
-                    if self._has_bab(hypernet_strings, bab):
-                        return True
+                    if self._has_bab(hypernet_strings, bab): return True
                     else: i += 1
-                else:
-                    i += 1
+                else: i += 1
         return False
 
     def _has_bab(self, strings, bab):
         for string in strings:
-            if bab in string:
-                return True
+            if bab in string: return True
         return False
