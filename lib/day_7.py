@@ -24,3 +24,13 @@ class IPChecker(object):
                     return True
                 else:
                     i += 1
+        return False
+
+    def _supports_ssl(self, ip):
+        i = 0
+        while i <= len(ip) - 3:
+            if ip[i] != ip[i + 1] and ip[i] == ip[i + 2] and ip[i + 1] + ip[i] + ip[i + 1] in ip:
+                return True
+            else:
+                i += 1
+        return False
