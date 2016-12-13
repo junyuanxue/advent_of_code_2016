@@ -12,4 +12,5 @@ class IPCheckerTestCase(unittest.TestCase):
         number = self.ip_checker.count(self.ips)
         self.assertEqual(number, 2)
 
-        # puzzle_tally = self.ip_checker.count(self.puzzle_ips)
+        puzzle_tally = self.ip_checker.count(self.puzzle_ips)
+        self.assertEqual(puzzle_tally, 110)
