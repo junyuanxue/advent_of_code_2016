@@ -21,3 +21,4 @@ class IPCheckerTestCase(unittest.TestCase):
         self.assertEqual(number, 3)
 
         puzzle_tally = self.ip_checker.count(self.puzzle_ips, 'ssl')
+        print(puzzle_tally)
