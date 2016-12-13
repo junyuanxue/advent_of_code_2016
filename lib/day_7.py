@@ -34,16 +34,17 @@ class IPChecker(object):
     def _supports_ssl(self, ip):
         supernet_strings = self._get_supernet_strings(ip)
         hypernet_strings = self._get_hypernet_strings(ip)
-        aba = self._has_aba(supernet_strings)
-        bab = aba[1] + aba[0] + aba[1]
-        return aba and self._has_bab(hypernet_strings, bab)
+        return self._has_aba_and_bab(supernet_strings, hypernet_strings)
 
-    def _has_aba(self, strings):
+    def _has_aba_and_bab(self, strings, hypernet_strings):
         for string in strings:
             i = 0
             while i <= len(string) - 3:
                 if string[i] != string[i + 1] and string[i] == string[i + 2]:
-                    return string[i] + string[i + 1] + string[i]
+                    bab = string[i + 1] + string[i] + string[i + 1]
+                    if self._has_bab(hypernet_strings, bab):
+                        return True
+                    else: i += 1
                 else:
                     i += 1
         return False
