@@ -9,8 +9,8 @@ class IPCheckerTestCase(unittest.TestCase):
             self.puzzle_ips = input_file.read()
 
     def test_counts_ips_that_support_tls(self):
-        number = self.ip_checker.count(self.ips)
+        number = self.ip_checker.count(self.ips, 'tls')
         self.assertEqual(number, 2)
 
-        puzzle_tally = self.ip_checker.count(self.puzzle_ips)
+        puzzle_tally = self.ip_checker.count(self.puzzle_ips, 'tls')
         self.assertEqual(puzzle_tally, 110)

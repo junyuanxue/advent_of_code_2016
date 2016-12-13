@@ -1,11 +1,12 @@
 import re
 
 class IPChecker(object):
-    def count(self, ips):
+    def count(self, ips, tech):
         ips = ips.strip().split('\n')
         tally = 0
         for ip in ips:
-            if self._supports_tls(ip):
+            criteria = self._supports_tls(ip) if tech == 'tls' else self._supports_ssl(ip)
+            if criteria:
                 tally += 1
         return tally
 
