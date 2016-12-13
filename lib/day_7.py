@@ -16,4 +16,10 @@ class IPChecker(object):
 
     def _has_abba(self, strings):
         for string in strings:
-            print(string)
+            string = re.sub(r'[^a-zA-Z]+', '', string)
+            i = 0
+            while i <= len(string) - 4:
+                if string[i] != string[i + 1] and string[i + 1] == string[i + 2] and string[i + 2] != string[i + 3] and string[i] == string[i + 3]:
+                    return True
+                else:
+                    i += 1
