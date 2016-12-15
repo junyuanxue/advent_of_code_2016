@@ -5,6 +5,7 @@ class Authy(object):
 
     def count_lit_pixels(self, sequence):
         steps = sequence.strip().split('\n')
+        screen = ['-' * 50] * 6
         for step in steps:
             if 'rect' in step:
                 width = int(step.split('x')[0][:-1])
