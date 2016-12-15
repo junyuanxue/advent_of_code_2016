@@ -22,7 +22,7 @@ class Authy(object):
         for i, row in enumerate(self.screen):
             if i < height:
                 j = 0
-                while j < width:
+                while j <= width:
                     self._switch('on', i, j)
                     j += 1
 
