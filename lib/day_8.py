@@ -9,4 +9,8 @@ class Authy(object):
             if 'rect' in step:
                 width = int(step.split('x')[0][:-1])
                 height = int(step.split('x')[1])
+            if 'rotate' in step:
+                distance = int(step.split(' ').pop())
+                coordinate = step.split('=')[0][-1]
+                position = step.split('=')[1][0]
         return '1'
