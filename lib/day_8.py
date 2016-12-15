@@ -25,13 +25,12 @@ class Authy(object):
             if i < height:
                 j = 0
                 while j < width:
-                    self._switch('on', i, j)
+                    self._switch('#', i, j)
                     j += 1
 
     def _switch(self, mode, row_index, column_index):
         row = list(self.screen[row_index])
-        value = '#' if mode == 'on' else '-'
-        row[column_index] = value
+        row[column_index] = mode
         self.screen[row_index] = ''.join(row)
 
     def _rotate(self, coordinate, position, distance):
@@ -39,4 +38,6 @@ class Authy(object):
             for i, row in enumerate(self.screen):
                 value = row[position]
                 new_index = i + distance
-                # self.screen[new_index] = row[:position].replace(, value) + row[position:]
+                while new_index > self.SCREEN_HEIGHT - 1:
+                    new_index -= self.SCREEN_HEIGHT
+                self._switch(value, new_index, position)
