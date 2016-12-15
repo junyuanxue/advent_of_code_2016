@@ -6,12 +6,12 @@ class Authy(object):
 
     def count_lit_pixels(self, sequence):
         steps = sequence.strip().split('\n')
-        print(self.screen)
         for step in steps:
             if 'rect' in step:
-                width = int(step.split('x')[0][:-1])
+                width = int(step.split('x')[0][-1])
                 height = int(step.split('x')[1])
                 self._turn_on_rectangle(width, height)
+                print(self.screen)
             if 'rotate' in step:
                 distance = int(step.split(' ').pop())
                 coordinate = step.split('=')[0][-1]
@@ -19,13 +19,18 @@ class Authy(object):
         return '1'
 
     def _turn_on_rectangle(self, width, height):
-        for index, row in enumerate(screen):
-            if index < height:
+        for i, row in enumerate(self.screen):
+            if i < height:
+                j = 0
+                while j < width:
+                    self._switch('on', i, j)
+                    j += 1
 
-    def _switch(self, mode, row, index):
+    def _switch(self, mode, row_index, column_index):
+        row = self.screen[row_index]
         string = '-'
         replacement = '#'
         if mode == 'off':
             string = '#'
-            replacement '-'
-        return row[:index].replace(string, replacement) + row[index:]
+            replacement = '-'
+        self.screen[row_index] = row[:column_index].replace(string, replacement) + row[column_index:]
