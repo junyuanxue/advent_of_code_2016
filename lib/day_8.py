@@ -36,17 +36,19 @@ class Authy(object):
         if coordinate == 'x':
             for i, row in enumerate(frozen_screen):
                 value = row[position]
-                new_index = i + distance
-                while new_index >= self.SCREEN_HEIGHT:
-                    new_index -= self.SCREEN_HEIGHT
+                new_index = self._get_new_index(i, distance, self.SCREEN_HEIGHT)
                 self._switch(value, new_index, position)
         else:
             row = frozen_screen[position]
             for i, spot in enumerate(list(row)):
-                new_index = i + distance
-                while new_index >= self.SCREEN_WIDTH:
-                    new_index -= self.SCREEN_WIDTH
+                new_index = self._get_new_index(i, distance, self.SCREEN_WIDTH)
                 self._switch(spot, position, new_index)
+
+    def _get_new_index(self, i, distance, limit):
+        new_index = i + distance
+        while new_index >= limit:
+            new_index -= limit
+        return new_index
 
     def _freeze_screen(self):
         frozen_screen = []
