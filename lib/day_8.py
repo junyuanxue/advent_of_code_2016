@@ -12,7 +12,8 @@ class Authy(object):
                 height = int(step.split('x')[1])
                 self._turn_on_rectangle(width, height)
                 print(self.screen)
-            if 'rotate' in step:
+            # if 'rotate' in step:
+            if 'rotate column x=1 by 1' in step:
                 coordinate = step.split('=')[0][-1]
                 position = int(step.split('=')[1][0])
                 distance = int(step.split(' ').pop())
@@ -35,9 +36,9 @@ class Authy(object):
         self.screen[row_index] = ''.join(row)
 
     def _rotate(self, coordinate, position, distance):
-        last_screen = self.screen
+        frozen_screen = self.screen
         if coordinate == 'x':
-            for i, row in enumerate(last_screen):
+            for i, row in enumerate(frozen_screen):
                 value = row[position]
                 new_index = i + distance
                 while new_index > self.SCREEN_HEIGHT - 1:
