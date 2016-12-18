@@ -11,3 +11,7 @@ class AuthyTestCase(unittest.TestCase):
     def test_counts_number_of_pixels_lit(self):
         number = self.authy.count_lit_pixels(self.sequence)
         self.assertEqual(number, 6)
+
+    def test_counts_number_of_pixels_lit_from_crazy_input(self):
+        puzzle_tally = self.authy.count_lit_pixels(self.puzzle_sequence)
+        print(puzzle_tally)
