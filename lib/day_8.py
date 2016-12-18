@@ -8,7 +8,7 @@ class Authy(object):
         steps = sequence.strip().split('\n')
         for step in steps:
             if 'rect' in step:
-                width = int(step.split('x')[0][-1])
+                width = int(step.split('x')[0].split(' ').pop())
                 height = int(step.split('x')[1])
                 self._turn_on_rectangle(width, height)
             if 'rotate' in step:
@@ -34,6 +34,7 @@ class Authy(object):
         self.screen[row_index] = ''.join(row)
 
     def _rotate(self, coordinate, position, distance):
+        print(distance)
         frozen_screen = self._freeze_screen()
         if coordinate == 'x':
             for i, row in enumerate(frozen_screen):
