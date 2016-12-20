@@ -16,6 +16,7 @@ class Authy(object):
                 position = int(step.split('=')[1].split(' by')[0])
                 distance = int(step.split(' ').pop())
                 self._rotate(coordinate, position, distance)
+        print(self.screen)
         return ''.join(self.screen).count('#')
 
     def _turn_on_rectangle(self, width, height):
